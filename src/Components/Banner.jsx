@@ -1,73 +1,113 @@
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import svg1 from "../assets/backgrounds/WaveLinesDesktop1.svg";
+import svg4 from "../assets/backgrounds/WaveLinesDesktop4.svg";
+import svg2 from "../assets/backgrounds/WaveLinesDesktop2.svg";
+import svg3 from "../assets/backgrounds/WaveLinesDesktop3.svg";
+import heroImage from "../../public/banner-image.png";
 
-import { motion } from "framer-motion";
-import bg1 from '../assets/backgrounds/WaveLinesDesktop3.svg'
 const Banner = () => {
-  // Animation variants for the background pan
-  const backgroundPan = {
-    animate: {
-      x: ["0%", "-10%", "0%"],
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear",
-      },
-    },
-  };
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Animation variants for the fade-in effect
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+  const smoothX = useSpring(mouseX, { damping: 20, stiffness: 100 });
+  const smoothY = useSpring(mouseY, { damping: 20, stiffness: 100 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const normalized = {
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      };
+      mouseX.set(normalized.x);
+      mouseY.set(normalized.y);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  // eslint-disable-next-line react/prop-types
+  const AnimatedSVG = ({ src, position, hoverDirection }) => {
+    const xRange = hoverDirection === "up" ? [-10, 10] : [10, -10];
+    const yRange = hoverDirection === "up" ? [-8, 8] : [8, -8];
+
+    const x = useSpring(useTransform(smoothX, [-1, 1], xRange), {
+      damping: 30,
+      stiffness: 80,
+    });
+    const y = useSpring(useTransform(smoothY, [-1, 1], yRange), {
+      damping: 30,
+      stiffness: 80,
+    });
+
+    return (
+      <motion.img
+        src={src}
+        alt="Decorative Wave"
+        className="absolute opacity-40"
+        style={{ ...position, width: "100%", x, y }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+      />
+    );
   };
 
   return (
     <div
-    className="relative h-screen flex items-center justify-center bg-blue-400 overflow-hidden bg-cover bg-center"
-    style={{ backgroundImage: `url(${bg1})` }}
-  >
-      {/* Background Image */}
-      <motion.div
-        className="absolute inset-0 " 
-        variants={backgroundPan}
-        animate="animate"
-      ></motion.div>
+      style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)" }}
+      className="relative text-white overflow-hidden bg-blue-800 pl-10"
+    >
+      <div className="relative grid grid-cols-12 container mx-auto">
+        <div className="col-span-4 text-center md:text-left z-10">
+          <h2 className="text-7xl font-bold leading-tight absolute mt-20">
+            Embrace the <br /> <span className="">future of finance</span>
+          </h2>
+          <p className="text-lg mt-68 absolute">
+            Reimagine financial services with AnyTech’s open platform,
+            distributed <br /> banking solution that powers transformation.
+          </p>
+          <button className="mt-96 bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg text-lg">
+            Reach Out to Us
+          </button>
+        </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0  bg-opacity-50"></div>
-
-      {/* Content */}
-      <div className="relative z-10 text-center text-white px-4">
-        <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, delay: 0 }}
-        >
-          Embrace the Future of Finance
-        </motion.h1>
-
-        <motion.p
-          className="text-lg md:text-xl mb-8"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          Reimagine financial services with AnyTechs open platform, distributed
-          banking solution that powers transformation.
-        </motion.p>
-
-        <motion.button
-          className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-600 transition-colors"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          Reach Out to Us
-        </motion.button>
+        <div className="relative col-span-8">
+          <div className="relative overflow-hidden">
+            <img
+              src={heroImage}
+              alt="Professional woman with phone"
+              className="relative object-cover rounded-lg shadow-lg scale-[1.4] -ml-24 transform"
+              style={{
+                clipPath:
+                  "polygon(77% 0, 100% 0, 100% 49%, 72% 100%, 21% 100%)",
+              }}
+            />
+          </div>
+        </div>
       </div>
+
+      <AnimatedSVG
+        src={svg1}
+        position={{ bottom: -10, left: 0 }}
+        hoverDirection="up"
+      />
+      <AnimatedSVG
+        src={svg2}
+        position={{ bottom: 50, left: 0 }}
+        hoverDirection="down"
+      />
+      <AnimatedSVG
+        src={svg3}
+        position={{ top: 0, right: 0 }}
+        hoverDirection="up"
+      />
+      <AnimatedSVG
+        src={svg4}
+        position={{ bottom: 0, right: 0 }}
+        hoverDirection="down"
+      />
     </div>
   );
 };
