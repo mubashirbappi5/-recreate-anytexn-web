@@ -1,15 +1,27 @@
 import bannerSVG1 from "../assets/story/3.svg";
+import { useEffect, useRef } from "react";
 import bannerSVG2 from "../assets/story/2.svg";
 import womanimg from '../assets/story/Woman.png'
 import icon1 from '../assets/icons/small icon/Icon1.svg'
 import icon2 from '../assets/icons/small icon/Icon2.svg'
 import icon3 from '../assets/icons/small icon/Icon3.svg'
+import gsap from "gsap";
+
 const FutureFinance = () => {
-
-
-
+    const topShapeRef = useRef(null);
+    
+    useEffect(() => {
+        gsap.to(topShapeRef.current, {
+            y: -50, // Move up by 80px
+            duration: 2, // Smooth transition time
+            ease: "power1.inOut", // Natural motion
+            repeat: -1, // Infinite loop
+            yoyo: true, // Moves back down smoothly
+          });
+      }, []);
+    
   return (
-    <section className="container mx-auto px-4 py-16 md:py-24">
+    <section className="w-11/12 mx-auto px-4 py-16 md:py-24">
     <div className="flex flex-col md:flex-row items-center justify-between gap-20 md:gap-16">
       {/* Left Content */}
       <div className="w-full md:w-1/2 space-y-4 ">
@@ -39,7 +51,7 @@ const FutureFinance = () => {
           {/* Background Shapes Layer */}
           <div className="absolute inset-0 w-full h-full">
             {/* Top right shape */}
-            <div className="absolute -top-20 left-0 w-72 h-72 md:w-96 md:h-96 transform rotate-180">
+            <div ref={topShapeRef} className="absolute -top-20 left-0 w-72 h-72 md:w-96 md:h-96 transform rotate-180">
               <img
                 src={bannerSVG1}
                 alt=""
@@ -47,7 +59,7 @@ const FutureFinance = () => {
               />
             </div>
             {/* Top shapes */}
-            <div className="absolute -top-10 right-10 md:-top-16 md:right-20 w-32 h-32 transform">
+            <div  className="absolute -top-10 right-10 md:-top-16 md:right-20 w-32 h-32 transform">
               <img
                 src={bannerSVG2}
                 alt=""
