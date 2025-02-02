@@ -2,7 +2,7 @@ import client1 from '../assets/client/Screenshot_2025-02-01_222327-removebg-prev
 
 const Client = () => {
     return (
-        <div className='md:grid  gap-10 md:grid-cols-5  flex   my-20'>
+        <div className='md:grid w-11/12 mx-auto  gap-10 md:grid-cols-5  flex   my-20'>
 
             <div className='border-2'>
                 <img src={client1} alt="" />
