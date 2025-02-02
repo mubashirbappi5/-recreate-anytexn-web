@@ -54,7 +54,7 @@ const PHILOSOPHY = () => {
         <img className="-rotate-90 w-30 absolute top-24 left-[725px]   " src={line3} alt="" />
         <img className="-rotate-90 w-16 absolute top-48 right-[265px]   " src={line4} alt="" />
 
-        <div className="bg-white dark:bg-gray-900">
+        <div className="bg-white dark:bg-gray-900 w-11/12 mx-auto">
           <div className="container px-6 py-12 mx-auto">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div>
