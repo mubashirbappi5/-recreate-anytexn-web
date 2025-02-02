@@ -56,20 +56,23 @@ const Legacy = () => {
   return (
     <div
       style={{ clipPath: "polygon(0 0, 100% 40%, 100% 100%, 0 100%)" }}
-      className="relative text-white overflow-hidden bg-blue-800 py-20"
+      className="relative text-white overflow-hidden bg-blue-800 py-10 sm:py-20"
     >
-      <div className="relative container z-50 ml-20">
-        <h2 className="text-5xl font-bold mb-4">
+      <div className="relative container z-50 px-5 sm:px-20">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center sm:text-left">
           Legacy no longer
         </h2>
-        <p className="text-lg max-w-2xl  mb-8">
+        <p className="text-lg sm:text-xl max-w-2xl mx-auto sm:mx-0 mb-8 text-center sm:text-left">
           Talk to us to find out how we can transform your organisation for the future
         </p>
-        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg text-lg">
-          Connect Us
-        </button>
+        <div className="text-center sm:text-left">
+          <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg text-lg sm:text-xl">
+            Connect Us
+          </button>
+        </div>
       </div>
 
+      {/* Animated SVGs */}
       <AnimatedSVG
         src={svg1}
         position={{ bottom: -10, left: 0 }}

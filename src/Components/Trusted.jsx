@@ -12,7 +12,7 @@ const Trusted = () => {
         <div className='w-9/12 mx-auto'>
         <h1 className='text-2xl font-bold text-center text-blue-500'>TRUSTED BY THE BEST</h1>
         <ScrollTrigger onEnter={() => setcounterOn(true)} onExit={() => setcounterOn(false)}>
-            <div className='flex justify-between mt-8'>
+            <div className='flex justify-between flex-col md:flex-row mt-8'>
 
                 {/* Years of Experience */}
                 <div className='text-center'>

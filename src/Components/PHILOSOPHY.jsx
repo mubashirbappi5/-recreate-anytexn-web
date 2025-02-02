@@ -18,7 +18,7 @@ const PHILOSOPHY = () => {
         </h1>
       </div>
       <section className="relative ">
-        <div className=" w-11/12 mx-auto rounded-2xl  grid grid-cols-12 gap-10">
+        <div className=" w-11/12 mx-auto rounded-2xl  grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className=" bg-gradient-to-br from-[#e6f4ff] to-white py-16 px-20  col-span-5 rounded-2xl">
             <div className=" shadow-xl bg-white  shadow- text-center p-10 rounded-2xl mt-20  ">
               <h4>Core Tech</h4>
@@ -48,14 +48,14 @@ const PHILOSOPHY = () => {
         </div>
 
         <img
-          className=" rotate-90 absolute top-40 left-[396px] -z-20"
+          className=" rotate-90 hidden md:absolute top-40 left-[396px] -z-20"
           src={bg}
           alt=""
         />
-        <img className="rotate-90 absolute top-40 left-[525px] " src={line1} alt="" />
-        <img className="-rotate-90 w-30 absolute top-44 left-[725px]   " src={line2} alt="" />
-        <img className="-rotate-90 w-30 absolute top-24 left-[725px]   " src={line3} alt="" />
-        <img className="-rotate-90 w-16 absolute top-48 right-[265px]   " src={line4} alt="" />
+        <img className="rotate-90 hidden md:absolute top-40 left-[525px] " src={line1} alt="" />
+        <img className="-rotate-90 w-30 hidden md:absolute top-44 left-[725px]   " src={line2} alt="" />
+        <img className="-rotate-90 w-30 hidden md:absolute top-24 left-[725px]   " src={line3} alt="" />
+        <img className="-rotate-90 w-16 hidden md:absolute top-48 right-[265px]   " src={line4} alt="" />
 
         <div className="bg-white dark:bg-gray-900 w-11/12 mx-auto">
           <div className="container px-6 py-12 mx-auto">

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import svg1 from "../assets/backgrounds/WaveLinesDesktop1.svg";
@@ -27,7 +28,6 @@ const Banner = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-  // eslint-disable-next-line react/prop-types
   const AnimatedSVG = ({ src, position, hoverDirection }) => {
     const xRange = hoverDirection === "up" ? [-10, 10] : [10, -10];
     const yRange = hoverDirection === "up" ? [-8, 8] : [8, -8];
@@ -60,28 +60,27 @@ const Banner = () => {
       className="relative text-white overflow-hidden bg-blue-800 pl-10"
     >
       <div className="relative grid grid-cols-12 container mx-auto">
-        <div className="col-span-4 text-center md:text-left z-10">
-          <h2 className="text-7xl font-bold leading-tight absolute mt-20">
+        <div className="col-span-12 md:col-span-4 text-center md:text-left z-10">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-center absolute mt-20">
             Embrace the <br /> <span className="">future of finance</span>
           </h2>
-          <p className="text-lg mt-68 absolute">
+          <p className="text-base sm:text-lg md:text-xl mt-68 absolute">
             Reimagine financial services with AnyTech’s open platform,
             distributed <br /> banking solution that powers transformation.
           </p>
-          <button className="mt-96 bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg text-lg">
+          <button className="mt-96 bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg text-lg sm:text-xl md:text-2xl">
             Reach Out to Us
           </button>
         </div>
 
-        <div className="relative col-span-8">
+        <div className="relative col-span-12 md:col-span-8">
           <div className="relative overflow-hidden">
             <img
               src={heroImage}
               alt="Professional woman with phone"
               className="relative object-cover rounded-lg shadow-lg scale-[1.4] -ml-24 transform"
               style={{
-                clipPath:
-                  "polygon(77% 0, 100% 0, 100% 49%, 72% 100%, 21% 100%)",
+                clipPath: "polygon(77% 0, 100% 0, 100% 49%, 72% 100%, 21% 100%)",
               }}
             />
           </div>
